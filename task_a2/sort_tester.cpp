@@ -172,9 +172,7 @@ public:
         std::vector<int> sizes = generator->get_sizes();
         std::vector<int> thresholds = {5, 10, 15, 20, 30, 50};
 
-        std::cout << "Starting comprehensive tests..." << std::endl;
-        std::cout << "Array sizes: from " << sizes.front() << " to "
-                  << sizes.back() << " with step 100" << std::endl;
+        std::cout << "Starting tests..." << std::endl;
         std::cout << "Thresholds: ";
         for (int th : thresholds)
             std::cout << th << " ";
@@ -187,4 +185,5 @@ public:
         std::cout << "All tests completed! Results saved to CSV files."
                   << std::endl;
     }
+
 };
