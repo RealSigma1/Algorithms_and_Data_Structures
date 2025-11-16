@@ -10,14 +10,14 @@ private:
     std::vector<int> almost_sorted_array;
 
     const int MAX_SIZE = 100000;
-    const int VALUE_RANGE_MIN = 0;
-    const int VALUE_RANGE_MAX = 6000;
+    const int MIN_RANGE = 0;
+    const int MAX_RANGE = 6000;
 
     void generate_arrays() {
         std::random_device rd;
         std::mt19937 gen(rd());
-        std::uniform_int_distribution<int> dist(VALUE_RANGE_MIN,
-                                                VALUE_RANGE_MAX);
+        std::uniform_int_distribution<int> dist(MIN_RANGE,
+                                                MAX_RANGE);
 
         std::cout << "Generating test arrays..." << std::endl;
 
@@ -70,4 +70,5 @@ public:
         }
         return sizes;
     }
+
 };
