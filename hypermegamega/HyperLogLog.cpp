@@ -17,10 +17,11 @@ static int clz32(std::uint32_t x) {
     return r;
 }
 
-HyperLogLog::HyperLogLog(int b)
+HyperLogLog::HyperLogLog(int b, std::uint32_t seed)
     : b_(b)
     , m_(1ULL << b)
-    , registers_(m_, 0) {
+    , registers_(m_, 0)
+    , seed_(seed) {
     if (b < 4 || b > 16) {
         throw std::invalid_argument("b must be in [4, 16]");
     }
@@ -45,7 +46,7 @@ int HyperLogLog::rho(std::uint32_t hash, int b) {
 void HyperLogLog::add(const std::string& element) {
     exact_set_.insert(element);
 
-    std::uint32_t hash = HashFuncGen::murmur3_32(element);
+    std::uint32_t hash = HashFuncGen::murmur3_32(element, seed_);
     std::uint32_t index = hash >> (32 - b_);
     int r = rho(hash, b_);
     if (r > registers_[index]) {
